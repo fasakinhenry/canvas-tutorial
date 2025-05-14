@@ -28,3 +28,13 @@ ctx.beginPath();
 ctx.arc(300, 300, 30, 0, Math.PI * 2);
 ctx.strokeStyle = 'blue';
 ctx.stroke();
+
+// Randomize drawing certain number of circles on the screen
+for (let i = 0; i < 50; i++) {
+  const x = Math.random() * innerWidth;
+  const y = Math.random() * innerHeight;
+  ctx.beginPath();
+  ctx.arc(x, y, 30, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba';
+  ctx.stroke();
+}
