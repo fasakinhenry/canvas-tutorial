@@ -9,7 +9,11 @@ const c = canvas.getContext('2d');
 
 function animate() {
   requestAnimationFrame(animate);
-  console.log('Hello');
+  // Draw a circle
+  c.beginPath();
+  c.arc(200, 200, 30, 0, Math.PI * 2);
+  c.strokeStyle = 'blue';
+  c.stroke();
 }
 
 animate();
