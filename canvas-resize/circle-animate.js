@@ -37,9 +37,9 @@ const circleArray = [];
 
 for (let i = 0; i < 100; i++) {
   // create initial values for the circle properties
-  let x = Math.random() * innerWidth;
-  let y = Math.random() * innerHeight;
   let radius = 30;
+  let x = Math.random() * (innerWidth - radius * 2) + radius;
+  let y = Math.random() * (innerHeight - radius * 2) + radius;
   let dx = (Math.random() - 1) * 8;
   let dy = (Math.random() - 1) * 8;
 
