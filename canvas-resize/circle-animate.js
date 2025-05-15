@@ -39,17 +39,14 @@ let radius = 30;
 let dx = (Math.random() - 1) * 8;
 let dy = (Math.random() - 1) * 8;
 
+// create a circle object
+const circle = new Circle(x, y, radius, dx, dy);
+
 function animate() {
   requestAnimationFrame(animate);
   c.clearRect(0, 0, innerWidth, innerHeight);
   // Draw a circle
-  c.beginPath();
-  c.arc(x, y, radius, 0, Math.PI * 2);
-  c.fill();
-  if (x + radius > innerWidth || x - radius < 0) dx = -dx;
-  if (y + radius > innerHeight || y - radius < 0) dy = -dy;
-  x += dx;
-  y += dy;
+  circle.update();
 }
 
 animate();
