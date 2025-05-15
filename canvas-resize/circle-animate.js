@@ -11,8 +11,8 @@ const c = canvas.getContext('2d');
 let x = Math.random() * innerWidth;
 let y = Math.random() * innerHeight;
 let radius = 30;
-let dx = (Math.random() - 0.5) * 8;
-let dy = (Math.random() - 0.5) * 8;
+let dx = (Math.random() - 1) * 8;
+let dy = (Math.random() - 1) * 8;
 
 function animate() {
   requestAnimationFrame(animate);
