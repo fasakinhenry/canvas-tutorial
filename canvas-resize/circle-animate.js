@@ -32,21 +32,28 @@ class Circle {
   }
 }
 
-// create initial values for the circle properties
-let x = Math.random() * innerWidth;
-let y = Math.random() * innerHeight;
-let radius = 30;
-let dx = (Math.random() - 1) * 8;
-let dy = (Math.random() - 1) * 8;
+// Create a for loop to get certain number of circles in array
+const circleArray = [];
 
-// create a circle object
-const circle = new Circle(x, y, radius, dx, dy);
+for (let i = 0; i < 100; i++) {
+  // create initial values for the circle properties
+  let x = Math.random() * innerWidth;
+  let y = Math.random() * innerHeight;
+  let radius = 30;
+  let dx = (Math.random() - 1) * 8;
+  let dy = (Math.random() - 1) * 8;
+
+  // create a circle object
+  circleArray.push(new Circle(x, y, radius, dx, dy));
+}
 
 function animate() {
   requestAnimationFrame(animate);
   c.clearRect(0, 0, innerWidth, innerHeight);
   // Draw a circle
-  circle.update();
+  for (let i = 0; i < circleArray.length; i++) {
+    circleArray[i].update();
+  }
 }
 
 animate();
