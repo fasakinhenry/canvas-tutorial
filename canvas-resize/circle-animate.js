@@ -8,11 +8,11 @@ canvas.width = innerWidth;
 const c = canvas.getContext('2d');
 
 // create initial values for the circle properties
-let x = 200;
-let y = 200;
+let x = Math.random() * innerWidth;
+let y = Math.random() * innerHeight;
 let radius = 30;
-let dx = 5;
-let dy = 4;
+let dx = (Math.random() - 0.5) * 8;
+let dy = (Math.random() - 0.5) * 8;
 
 function animate() {
   requestAnimationFrame(animate);
@@ -20,11 +20,11 @@ function animate() {
   // Draw a circle
   c.beginPath();
   c.arc(x, y, radius, 0, Math.PI * 2);
-  c.strokeStyle = 'blue';
-  c.stroke();
+  c.fill();
   if (x + radius > innerWidth || x - radius < 0) dx = -dx;
+  if (y + radius > innerHeight || y - radius < 0) dy = -dy;
   x += dx;
-//   y += dy;
+  y += dy;
 }
 
 animate();
