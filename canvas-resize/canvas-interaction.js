@@ -14,6 +14,16 @@ const mouse = {
   y: undefined,
 };
 
+// create an event listener for resize
+addEventListener('resize', () => {
+  // set the height and width of the canvas
+  canvas.height = innerHeight;
+  canvas.width = innerWidth;
+
+  init();
+});
+
+// Create an event listener for mouse movement
 addEventListener('mousemove', (event) => {
   mouse.x = event.x;
   mouse.y = event.y;
@@ -22,14 +32,7 @@ addEventListener('mousemove', (event) => {
 let maxRadius = 40;
 let minRadius = 5;
 
-let colorArray = [
-  '#FF0000',
-  '#00FF00',
-  '#0000FF',
-  '#FFFF00',
-  '#FF00FF',
-  '#00FFFF',
-];
+let colorArray = ['#2c3e50', '#e74c3c', '#ECF0F1', '#3498db', '#2980b9'];
 
 // circle class
 class Circle {
@@ -40,7 +43,7 @@ class Circle {
     this.minRadius = radius;
     this.dx = dx;
     this.dy = dy;
-    this.color = colorArray[Math.floor(Math.random() * colorArray.length)]
+    this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
   }
   draw() {
     c.beginPath();
@@ -65,9 +68,9 @@ class Circle {
       mouse.y - this.y < 50 &&
       mouse.y - this.y > -50
     ) {
-        if (this.radius < maxRadius) {
-            this.radius += 1;
-        }
+      if (this.radius < maxRadius) {
+        this.radius += 1;
+      }
     } else if (this.radius > this.minRadius) {
       this.radius -= 1;
     }
@@ -78,15 +81,19 @@ class Circle {
 // Create a circle array to hold all circles
 const circleArray = [];
 
-// For loop to get multiple circles
-for (let i = 0; i < 400; i++) {
-  const radius = 30;
-  const x = Math.random() * (innerWidth - radius * 2) + radius;
-  const y = Math.random() * (innerHeight - radius * 2) + radius;
-  const dx = (Math.random() - 1) * 8;
-  const dy = (Math.random() - 1) * 8;
-  circleArray.push(new Circle(x, y, radius, dx, dy));
+// Create a function to initialize the circles
+function init() {
+  circleArray.length = 0; // Clear the array
+  for (let i = 0; i < 600; i++) {
+    const radius = Math.random() * 8 + 4;
+    const x = Math.random() * (innerWidth - radius * 2) + radius;
+    const y = Math.random() * (innerHeight - radius * 2) + radius;
+    const dx = (Math.random() - 1) * 2;
+    const dy = (Math.random() - 1) * 2;
+    circleArray.push(new Circle(x, y, radius, dx, dy));
+  }
 }
+
 function animate() {
   requestAnimationFrame(animate);
   c.clearRect(0, 0, innerWidth, innerHeight);
@@ -96,4 +103,6 @@ function animate() {
   }
 }
 
+// Initialize the circles
+init();
 animate();
