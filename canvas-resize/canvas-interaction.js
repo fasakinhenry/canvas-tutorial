@@ -8,6 +8,17 @@ canvas.width = innerWidth;
 // Create a context for drawing
 const c = canvas.getContext('2d');
 
+// Create a mouse object to hold the x and y coordinates
+const mouse = {
+  x: undefined,
+  y: undefined,
+};
+
+addEventListener('mousemove', (event) => {
+  mouse.x = event.x;
+  mouse.y = event.y;
+});
+
 // circle class
 class Circle {
   constructor(x, y, radius, dx, dy) {
@@ -32,6 +43,7 @@ class Circle {
     }
     this.x += this.dx;
     this.y += this.dy;
+
     this.draw();
   }
 }
