@@ -19,19 +19,33 @@ addEventListener('mousemove', (event) => {
   mouse.y = event.y;
 });
 
+let maxRadius = 40;
+let minRadius = 5;
+
+let colorArray = [
+  '#FF0000',
+  '#00FF00',
+  '#0000FF',
+  '#FFFF00',
+  '#FF00FF',
+  '#00FFFF',
+];
+
 // circle class
 class Circle {
   constructor(x, y, radius, dx, dy) {
     this.x = x;
     this.y = y;
     this.radius = radius;
+    this.minRadius = radius;
     this.dx = dx;
     this.dy = dy;
+    this.color = colorArray[Math.floor(Math.random() * colorArray.length)]
   }
   draw() {
     c.beginPath();
     c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    c.fillStyle = 'blue';
+    c.fillStyle = this.color;
     c.fill();
   }
   update() {
@@ -44,6 +58,19 @@ class Circle {
     this.x += this.dx;
     this.y += this.dy;
 
+    // Interactivy with mouse
+    if (
+      mouse.x - this.x < 50 &&
+      mouse.x - this.x > -50 &&
+      mouse.y - this.y < 50 &&
+      mouse.y - this.y > -50
+    ) {
+        if (this.radius < maxRadius) {
+            this.radius += 1;
+        }
+    } else if (this.radius > this.minRadius) {
+      this.radius -= 1;
+    }
     this.draw();
   }
 }
@@ -52,7 +79,7 @@ class Circle {
 const circleArray = [];
 
 // For loop to get multiple circles
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 400; i++) {
   const radius = 30;
   const x = Math.random() * (innerWidth - radius * 2) + radius;
   const y = Math.random() * (innerHeight - radius * 2) + radius;
